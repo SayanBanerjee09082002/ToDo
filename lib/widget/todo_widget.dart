@@ -10,26 +10,42 @@ class TodoWidget extends StatelessWidget {
   final Todo todo;
 
   const TodoWidget({
-    @required this.todo,
-    Key key,
-  }) : super(key: key);
+    required this.todo,
+  });
 
   @override
   Widget build(BuildContext context) => ClipRRect(
         borderRadius: BorderRadius.zero,
         child: Slidable(
-          actionPane: SlidableDrawerActionPane(),
-          key: Key(todo.id),
-          secondaryActions: [
-            IconSlideAction(
-              color: Colors.red,
-              caption: 'Delete',
-              onTap: () => deleteTodo(context, todo),
-              icon: Icons.delete,
-            )
-          ],
+          key: const ValueKey(0),
+          endActionPane: ActionPane(
+            motion: ScrollMotion(),
+            children: [
+              SlidableAction(`
+                onPressed: null,
+                backgroundColor: Color(0xFFFE4A49),
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Delete',
+              ),
+            ],
+          ),
           child: buildTodo(context),
         ),
+
+        // Slidable(
+        //   actionPane: SlidableDrawerActionPane(),
+        //   key: Key(todo.id),
+        //   secondaryActions: [
+        //     IconSlideAction(
+        //       color: Colors.red,
+        //       caption: 'Delete',
+        //       onTap: () => deleteTodo(context, todo),
+        //       icon: Icons.delete,
+        //     )
+        //   ],
+        //   child: buildTodo(context),
+        // ),
       );
 
   Widget buildTodo(BuildContext context) => GestureDetector(
@@ -92,7 +108,7 @@ class TodoWidget extends StatelessWidget {
 
   void editTodo(BuildContext context, Todo todo) => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => EditTodoPage(todo: todo),
+          builder: (context) => EditTodoPage(todo: todo,),
         ),
       );
 }

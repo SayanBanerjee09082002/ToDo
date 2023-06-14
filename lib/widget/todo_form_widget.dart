@@ -8,13 +8,12 @@ class TodoFormWidget extends StatelessWidget {
   final VoidCallback onSavedTodo;
 
   const TodoFormWidget({
-    Key key,
     this.title = '',
     this.description = '',
-    @required this.onChangedTitle,
-    @required this.onChangedDescription,
-    @required this.onSavedTodo,
-  }) : super(key: key);
+    required this.onChangedTitle,
+    required this.onChangedDescription,
+    required this.onSavedTodo,
+  });
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
@@ -36,7 +35,7 @@ class TodoFormWidget extends StatelessWidget {
         initialValue: title,
         onChanged: onChangedTitle,
         validator: (title) {
-          if (title.isEmpty) {
+          if (title!.isEmpty) {
             return 'The title cannot be empty';
           }
           return null;

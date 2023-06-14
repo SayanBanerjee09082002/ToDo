@@ -13,15 +13,15 @@ class Todo {
   bool isDone;
 
   Todo({
-    @required this.createdTime,
-    @required this.title,
+    required this.createdTime,
+    required this.title,
     this.description = '',
-    this.id,
+    required this.id,
     this.isDone = false,
   });
 
   static Todo fromJson(Map<String, dynamic> json) => Todo(
-        createdTime: Utils.toDateTime(json['createdTime']),
+        createdTime: Utils.toDateTime(json['createdTime']) ?? DateTime.now(),
         title: json['title'],
         description: json['description'],
         id: json['id'],

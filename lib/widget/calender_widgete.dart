@@ -5,7 +5,7 @@ import '/widget/todo_widget.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CalenderWidget extends StatelessWidget {
-  CalenderWidget({Key key, this.title}) : super(key: key);
+  CalenderWidget({ required this.title});
   final String title;
   @override
   Widget build(BuildContext context) {

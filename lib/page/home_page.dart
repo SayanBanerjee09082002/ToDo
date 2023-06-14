@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     final tabs = [
       TodoListWidget(),
       CompletedListWidget(),
-      CalenderWidget(),
+      CalenderWidget(title: '',),
     ];
 
     return Scaffold(
@@ -65,12 +65,11 @@ class _HomePageState extends State<HomePage> {
               return Center(child: CircularProgressIndicator());
             default:
               if (snapshot.hasError) {
-                return buildText('Something Went Wrong');
+                return Text('Opps Something not right!');
               } else {
                 final todos = snapshot.data;
-
                 final provider = Provider.of<TodosProvider>(context);
-                provider.setTodos(todos);
+                provider.setTodos(todos!);
                 return tabs[selectedIndex];
               }
           }

@@ -43,9 +43,9 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
       );
 
   void addTodo() {
-    final isValid = _formKey.currentState.validate();
+    final isValid = _formKey.currentState?.validate();
 
-    if (!isValid) {
+    if (isValid!) {
       return;
     } else {
       final todo = Todo(
